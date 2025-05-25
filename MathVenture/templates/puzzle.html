@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h2>🧩 Daily Puzzle</h2>
+  <p class="question">{{ question }}</p>
+
+  {% if show_answer %}
+    <div class="result incorrect">
+      ❌ The correct answer was: <strong>{{ revealed_answer }}</strong>
+    </div>
+    <form method="GET" action="{{ url_for('puzzle') }}">
+      <button type="submit">Try Again</button>
+    </form>
+  {% else %}
+    <form method="POST">
+      <label>Your Answer:</label>
+      <input type="text" name="answer" required>
+      <button type="submit">Check</button>
+    </form>
+  {% endif %}
+
+  {% if incorrect and not show_answer %}
+    <div class="result incorrect">
+      ❌ Incorrect! Keep trying.
+      {% if hint %}
+        <p><strong>Hint:</strong> {{ hint }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <p style="margin-top: 2em;"><a href="{{ url_for('index') }}">← Back to Home</a></p>
+{% endblock %}
