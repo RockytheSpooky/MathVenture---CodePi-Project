@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  {% if completed %}
+    <h2>🎉 You completed the {{ world|title }}!</h2>
+    <div class="result correct">Great job!</div>
+  {% elif correct %}
+    <h2>✅ Correct!</h2>
+    <div class="result correct">Nice work! Moving on…</div>
+  {% else %}
+    <h2>❌ Incorrect</h2>
+    <div class="result incorrect">Try again.</div>
+  {% endif %}
+
+  {% if world == "puzzle" %}
+    <p style="margin-top: 2em;">
+      <a href="{{ url_for('puzzle') }}">← Back to Question</a>
+    </p>
+  {% endif %}
+
+  <p><a href="{{ url_for('index') }}">🏠 Back to Home</a></p>
+{% endblock %}

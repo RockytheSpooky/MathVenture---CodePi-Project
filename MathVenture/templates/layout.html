@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MathVenture</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+  <header>
+    <h1>🌟 MathVenture</h1>
+    <nav>
+      <a href="{{ url_for('index') }}">Home</a> |
+      <a href="{{ url_for('puzzle') }}">Daily Puzzle</a> |
+      <a href="{{ url_for('math_bot') }}">MathBot</a>
+    </nav>
+    <hr />
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <hr />
+    <p style="font-size: 0.9em; color: #666;">&copy; 2025 MathVenture</p>
+  </footer>
+</body>
+</html>

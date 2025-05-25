@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h2>🤖 MathBot: Ask MathBot a Math Question</h2>
+
+  <form method="POST">
+    <p>Click a question:</p>
+
+    <!-- Algebra -->
+    <button type="submit" name="question" value="simplifying">What is simplifying?</button>
+    <button type="submit" name="question" value="distribute">Why distribute in 2(x + 3)?</button>
+    <button type="submit" name="question" value="fully simplified">When is an equation fully simplified?</button>
+    <button type="submit" name="question" value="solve 3x">How to solve 3x = 12?</button>
+    <button type="submit" name="question" value="solving vs simplifying">Solving vs. simplifying?</button>
+    <button type="submit" name="question" value="why solve">Why solve for x?</button>
+    <button type="submit" name="question" value="check answer">How to check my answer?</button>
+    <button type="submit" name="question" value="4x + 8 = 48">How to solve 4x + 8 = 48?</button>
+
+    <!-- Geometry -->
+    <button type="submit" name="question" value="triangle angles">Why do triangle angles = 180°?</button>
+    <button type="submit" name="question" value="polygon sides">How to remember polygon sides?</button>
+    <button type="submit" name="question" value="regular vs irregular">Regular vs. irregular shapes?</button>
+    <button type="submit" name="question" value="area rectangle">How to find area of a rectangle?</button>
+    <button type="submit" name="question" value="why area">Why find area?</button>
+    <button type="submit" name="question" value="length vs width">Does order matter in area?</button>
+    <button type="submit" name="question" value="geometry in life">How is geometry used?</button>
+
+    <!-- Fractions -->
+    <button type="submit" name="question" value="add fractions">How to add different fractions?</button>
+    <button type="submit" name="question" value="1/2 + 1/4">Why is 1/2 + 1/4 not 2/6?</button>
+    <button type="submit" name="question" value="simplify fractions">How do you simplify fractions?</button>
+    <button type="submit" name="question" value="smallest fraction">Which fraction is smallest?</button>
+    <button type="submit" name="question" value="greater fraction">What does 'greater' mean?</button>
+    <button type="submit" name="question" value="3/5 of 20">What is 3/5 of 20?</button>
+    <button type="submit" name="question" value="fractions in life">How are fractions used in life?</button>
+  </form>
+
+  {% if response %}
+    <div class="result {% if 'don’t know' in response %}incorrect{% else %}correct{% endif %}">
+      <strong>MathBot says:</strong>
+      <p>{{ response }}</p>
+    </div>
+  {% endif %}
+
+  <p style="margin-top: 2em;"><a href="{{ url_for('index') }}">← Back to Home</a></p>
+{% endblock %}

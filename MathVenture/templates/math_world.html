@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h2>🌍 {{ world|title }} - Level {{ level }}</h2>
+
+  <div class="question">{{ question.question }}</div>
+
+  {% if show_answer %}
+    <div class="result incorrect">
+      ❌ Oops! The correct answer was: <strong>{{ revealed_answer }}</strong>
+    </div>
+    <form method="GET" action="{{ url_for('math_world', world_name=world) }}">
+      <button type="submit">Try Next Question</button>
+    </form>
+  {% else %}
+    <form method="POST">
+      {% for option in question.options %}
+        <div>
+          <label>
+            <input type="radio" name="answer" value="{{ option }}" required> {{ option }}
+          </label>
+        </div>
+      {% endfor %}
+      <button type="submit">Submit</button>
+    </form>
+  {% endif %}
+
+  {% if incorrect and not show_answer %}
+    <div class="result incorrect">
+      ❌ Incorrect. Try again!
+      {% if hints == 1 %}
+        <p><strong>Hint:</strong> Think about the type of problem. What is being asked?</p>
+      {% elif hints == 2 %}
+        <p><strong>Hint:</strong> Double-check your math or use paper to break it down.</p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <p style="margin-top: 2em;"><a href="{{ url_for('index') }}">← Back to Home</a></p>
+{% endblock %}
